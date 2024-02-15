@@ -24,5 +24,5 @@ public class Menu {
 		this.createAt = createAt;
 		this.updateAt = updateAt;
 	}
-
+	
 }
