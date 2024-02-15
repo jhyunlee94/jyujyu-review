@@ -37,4 +37,4 @@ out/
 .vscode/
 
 ### local environment
-infra/local/dbdata
+infra/local-review/dbdata
