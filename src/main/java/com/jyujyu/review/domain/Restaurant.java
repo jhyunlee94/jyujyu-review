@@ -22,4 +22,14 @@ public class Restaurant {
 		this.updateAt = updateAt;
 	}
 
+	@Override
+	public String toString() {
+		return "Restaurant{" +
+			"id=" + id +
+			", name='" + name + '\'' +
+			", address='" + address + '\'' +
+			", createAt=" + createAt +
+			", updateAt=" + updateAt +
+			'}';
+	}
 }
