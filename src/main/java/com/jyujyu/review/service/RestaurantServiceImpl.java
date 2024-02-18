@@ -9,10 +9,12 @@ import com.jyujyu.review.controller.response.RestaurantResponse;
 import com.jyujyu.review.domain.Restaurant;
 import com.jyujyu.review.service.port.RestaurantRepository;
 
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
+@Builder
 public class RestaurantServiceImpl implements RestaurantService {
 
 	private final RestaurantRepository restaurantRepository;

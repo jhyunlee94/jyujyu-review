@@ -4,11 +4,15 @@ import java.time.ZonedDateTime;
 
 import com.jyujyu.review.domain.Restaurant;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @Getter
 @Builder
+@AllArgsConstructor // mock 테스트 한다고 추가 함 추후 다른 형태로 바꿀 예정
+@EqualsAndHashCode  // mock 테스트 한다고 추가 함 추후 다른 형태로 바꿀 예정
 public class RestaurantResponse {
 	private Long id;
 	private String name;

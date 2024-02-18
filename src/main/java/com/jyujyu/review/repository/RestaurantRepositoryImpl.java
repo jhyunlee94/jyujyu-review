@@ -20,4 +20,9 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
 		return restaurantJpaRepository.findAll().stream().map(RestaurantEntity::toModel).toList();
 	}
 
+	@Override
+	public Restaurant save(Restaurant restaurant) {
+		return restaurantJpaRepository.save(RestaurantEntity.fromModel(restaurant)).toModel();
+	}
+
 }
