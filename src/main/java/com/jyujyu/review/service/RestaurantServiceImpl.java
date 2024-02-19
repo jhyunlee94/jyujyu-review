@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.jyujyu.review.controller.port.RestaurantService;
 import com.jyujyu.review.controller.response.RestaurantResponse;
 import com.jyujyu.review.domain.Restaurant;
+import com.jyujyu.review.domain.RestaurantCreate;
+import com.jyujyu.review.service.port.MenuRepository;
 import com.jyujyu.review.service.port.RestaurantRepository;
 
 import lombok.Builder;
@@ -18,11 +20,18 @@ import lombok.RequiredArgsConstructor;
 public class RestaurantServiceImpl implements RestaurantService {
 
 	private final RestaurantRepository restaurantRepository;
+	private final MenuRepository menuRepository;
 
 	@Override
 	public List<RestaurantResponse> getRestaurants() {
 		List<Restaurant> list = restaurantRepository.getRestaurants();
 		// return list.stream().map((response) -> RestaurantResponse.from(response)).toList();
 		return list.stream().map(RestaurantResponse::from).toList();
+	}
+
+	@Override
+	public Restaurant create(RestaurantCreate restaurantCreate) {
+
+		return null;
 	}
 }

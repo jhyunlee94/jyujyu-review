@@ -13,6 +13,7 @@ import com.jyujyu.review.controller.port.RestaurantService;
 import com.jyujyu.review.controller.response.RestaurantResponse;
 import com.jyujyu.review.domain.Restaurant;
 import com.jyujyu.review.mock.FakeRestaurantRepository;
+import com.jyujyu.review.service.port.MenuRepository;
 import com.jyujyu.review.service.port.RestaurantRepository;
 
 public class RestaurantServiceTest {
@@ -20,6 +21,7 @@ public class RestaurantServiceTest {
 	private RestaurantServiceImpl restaurantServiceImpl;
 	private RestaurantService restaurantService;
 	private RestaurantRepository restaurantRepository;
+	private MenuRepository menuRepository;
 
 	@BeforeEach
 	public void init() {
@@ -28,7 +30,8 @@ public class RestaurantServiceTest {
 
 		// Mock 객체 생성
 		restaurantRepository = Mockito.mock(RestaurantRepository.class);
-		restaurantServiceImpl = new RestaurantServiceImpl(restaurantRepository);
+		menuRepository = Mockito.mock(MenuRepository.class);
+		restaurantServiceImpl = new RestaurantServiceImpl(restaurantRepository, menuRepository);
 		// 객체 형태로 테스트 구성
 		FakeRestaurantRepository fakeRestaurantRepository = new FakeRestaurantRepository();
 		this.restaurantService = RestaurantServiceImpl.builder()
