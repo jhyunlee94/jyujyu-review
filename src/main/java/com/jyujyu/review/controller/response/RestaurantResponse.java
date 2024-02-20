@@ -18,8 +18,8 @@ public class RestaurantResponse {
 	private Long id;
 	private String name;
 	private String address;
-	private ZonedDateTime createAt;
-	private ZonedDateTime updateAt;
+	private ZonedDateTime createdAt;
+	private ZonedDateTime updatedAt;
 	private List<RestaurantMenuResponse> menus;
 
 	public static RestaurantResponse from(Restaurant restaurant) {
@@ -31,20 +31,10 @@ public class RestaurantResponse {
 			.id(restaurant.getId())
 			.name(restaurant.getName())
 			.address(restaurant.getAddress())
-			.createAt(restaurant.getCreateAt())
-			.updateAt(restaurant.getUpdateAt())
+			.createdAt(restaurant.getCreatedAt())
+			.updatedAt(restaurant.getUpdatedAt())
 			.menus(menuResponses)
 			.build();
 	}
 
-	@Override
-	public String toString() {
-		return "RestaurantResponse{" +
-			"id=" + id +
-			", name='" + name + '\'' +
-			", address='" + address + '\'' +
-			", createAt=" + createAt +
-			", updateAt=" + updateAt +
-			'}';
-	}
 }

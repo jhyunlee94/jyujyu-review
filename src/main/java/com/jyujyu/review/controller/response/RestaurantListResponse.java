@@ -23,8 +23,8 @@ public class RestaurantListResponse {
 			.id(restaurant.getId())
 			.name(restaurant.getName())
 			.address(restaurant.getAddress())
-			.createdAt(restaurant.getCreateAt())
-			.updatedAt(restaurant.getUpdateAt())
+			.createdAt(restaurant.getCreatedAt())
+			.updatedAt(restaurant.getUpdatedAt())
 			.build();
 	}
 }

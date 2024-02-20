@@ -5,10 +5,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jyujyu.review.controller.port.RestaurantService;
+import com.jyujyu.review.controller.request.EditRestaurantRequest;
 import com.jyujyu.review.controller.response.RestaurantInfoResponse;
 
 import lombok.Builder;
@@ -88,10 +90,13 @@ public class RestaurantController {
 
 	// 맛집 수정
 	@PutMapping("/restaurant/{restaurantId}")
-	public String edit(
-		@PathVariable Long restaurantId
+	public ResponseEntity<Void> edit(
+		@PathVariable Long restaurantId,
+		@RequestBody EditRestaurantRequest request
 	) {
-		return "edit restaurant";
+		restaurantService.edit(restaurantId, request);
+		return ResponseEntity
+			.ok().build();
 	}
 
 	// 맛집 삭제
