@@ -1,14 +1,21 @@
 package com.jyujyu.review.model;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.annotations.BatchSize;
 
 import com.jyujyu.review.domain.Restaurant;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,6 +43,11 @@ public class RestaurantEntity {
 	@Column(name = "update_at")
 	private ZonedDateTime updateAt;
 
+	@OneToMany(cascade = CascadeType.ALL)
+	@BatchSize(size = 20)
+	@JoinColumn(name = "menu_id")
+	private final List<RestaurantMenuEntity> menus = new ArrayList<>();
+
 	/**
 	 * fromModel() 메서드는 Restaurant 객체를 받아서
 	 * RestaurantEntity 객체로 변환하고,
@@ -49,6 +61,12 @@ public class RestaurantEntity {
 		restaurantEntity.address = restaurant.getAddress();
 		restaurantEntity.createAt = restaurant.getCreateAt();
 		restaurantEntity.updateAt = restaurant.getUpdateAt();
+		// Restaurant의 menus를 RestaurantMenuEntity로 변환하여 menus 리스트에 추가
+		List<RestaurantMenuEntity> menuEntities = restaurant.getMenus().stream()
+			.map(RestaurantMenuEntity::fromModel)
+			.toList();
+		restaurantEntity.menus.addAll(menuEntities);
+
 		return restaurantEntity;
 	}
 
@@ -59,7 +77,13 @@ public class RestaurantEntity {
 			.address(address)
 			.createAt(createAt)
 			.updateAt(updateAt)
+			.menus(menus.stream().map(RestaurantMenuEntity::toModel)
+				.toList())
 			.build();
+	}
+
+	public void addRestaurantMenu(final RestaurantMenuEntity menu) {
+		menus.add(menu);
 	}
 
 	@Override

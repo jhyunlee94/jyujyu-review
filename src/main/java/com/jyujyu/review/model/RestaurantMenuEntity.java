@@ -2,6 +2,8 @@ package com.jyujyu.review.model;
 
 import java.time.ZonedDateTime;
 
+import com.jyujyu.review.domain.Menu;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +24,7 @@ public class RestaurantMenuEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "restaurant_id")
+	@Column(name = "restaurant_id") // 직접참조 사용할지 모르겠음
 	private Long restaurantId;
 
 	@Column(name = "name")
@@ -36,4 +38,26 @@ public class RestaurantMenuEntity {
 
 	@Column(name = "update_at")
 	private ZonedDateTime updateAt;
+
+	public static RestaurantMenuEntity fromModel(Menu menu) {
+		RestaurantMenuEntity restaurantMenuEntity = new RestaurantMenuEntity();
+		restaurantMenuEntity.id = menu.getId();
+		restaurantMenuEntity.restaurantId = menu.getRestaurantId();
+		restaurantMenuEntity.name = menu.getName();
+		restaurantMenuEntity.price = menu.getPrice();
+		restaurantMenuEntity.createAt = menu.getCreateAt();
+		restaurantMenuEntity.updateAt = menu.getUpdateAt();
+		return restaurantMenuEntity;
+	}
+
+	public Menu toModel() {
+		return Menu.builder()
+			.id(id)
+			.restaurantId(restaurantId)
+			.name(name)
+			.price(price)
+			.createAt(createAt)
+			.updateAt(updateAt)
+			.build();
+	}
 }

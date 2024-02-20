@@ -1,6 +1,7 @@
 package com.jyujyu.review.controller.response;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 
 import com.jyujyu.review.domain.Restaurant;
 
@@ -19,14 +20,20 @@ public class RestaurantResponse {
 	private String address;
 	private ZonedDateTime createAt;
 	private ZonedDateTime updateAt;
+	private List<RestaurantMenuResponse> menus;
 
 	public static RestaurantResponse from(Restaurant restaurant) {
+		List<RestaurantMenuResponse> menuResponses = restaurant.getMenus().stream()
+			.map(RestaurantMenuResponse::from)
+			.toList();
+
 		return RestaurantResponse.builder()
 			.id(restaurant.getId())
 			.name(restaurant.getName())
 			.address(restaurant.getAddress())
 			.createAt(restaurant.getCreateAt())
 			.updateAt(restaurant.getUpdateAt())
+			.menus(menuResponses)
 			.build();
 	}
 

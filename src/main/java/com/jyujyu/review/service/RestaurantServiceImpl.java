@@ -1,11 +1,14 @@
 package com.jyujyu.review.service;
 
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import com.jyujyu.review.controller.port.RestaurantService;
 import com.jyujyu.review.controller.response.RestaurantResponse;
+import com.jyujyu.review.domain.Menu;
 import com.jyujyu.review.domain.Restaurant;
 import com.jyujyu.review.domain.RestaurantCreate;
 import com.jyujyu.review.service.port.MenuRepository;
@@ -30,8 +33,27 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
-	public Restaurant create(RestaurantCreate restaurantCreate) {
+	public Restaurant create(RestaurantCreate request) {
+		List<Menu> menus = new ArrayList<>();
+		request.getMenus().forEach((menu) -> {
+			Menu menu1 = Menu.builder()
+				.name(menu.getName())
+				.price(menu.getPrice())
+				.createAt(ZonedDateTime.now())
+				.updateAt(ZonedDateTime.now())
+				.build();
+			menus.add(menu1);
+		});
+		Restaurant restaurant = Restaurant.builder()
+			.name(request.getName())
+			.address(request.getAddress())
+			.createAt(ZonedDateTime.now())
+			.updateAt(ZonedDateTime.now())
+			.menus(menus)
+			.build();
 
-		return null;
+		restaurantRepository.save(restaurant);
+
+		return restaurant;
 	}
 }
