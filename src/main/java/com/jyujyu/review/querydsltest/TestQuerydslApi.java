@@ -1,19 +1,15 @@
-package com.jyujyu.review.api;
+package com.jyujyu.review.querydsltest;
 
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jyujyu.review.model.TestEntity;
-import com.jyujyu.review.service.TestService;
-
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-public class TestQueryApi {
-
+public class TestQuerydslApi {
 	private final TestService testService;
 
 	@GetMapping("/test/query/jpa")
@@ -25,5 +21,4 @@ public class TestQueryApi {
 	public List<TestEntity> queryQuerydsl() {
 		return testService.findAllByNameByQuerydsl("jyujyu");
 	}
-
 }
