@@ -16,10 +16,10 @@ public class FakeRestaurantRepository implements RestaurantRepository {
 	// 소형테스트는 동기화가 필요없는데 진행
 	private final List<Restaurant> data = Collections.synchronizedList(new ArrayList<>());
 
-	@Override
-	public List<Restaurant> getRestaurants() {
-		return new ArrayList<>(data);
-	}
+	// @Override
+	// public List<Restaurant> getRestaurants() {
+	// 	return new ArrayList<>(data);
+	// }
 
 	@Override
 	public Restaurant save(Restaurant restaurant) {

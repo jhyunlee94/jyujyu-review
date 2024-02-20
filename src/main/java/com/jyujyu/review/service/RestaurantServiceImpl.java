@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.jyujyu.review.controller.port.RestaurantService;
-import com.jyujyu.review.controller.response.RestaurantResponse;
+import com.jyujyu.review.controller.response.RestaurantListResponse;
 import com.jyujyu.review.domain.Menu;
 import com.jyujyu.review.domain.Restaurant;
 import com.jyujyu.review.domain.RestaurantCreate;
@@ -25,11 +25,16 @@ public class RestaurantServiceImpl implements RestaurantService {
 	private final RestaurantRepository restaurantRepository;
 	private final MenuRepository menuRepository;
 
+	// @Override
+	// public List<RestaurantResponse> getRestaurants() {
+	// 	List<Restaurant> list = restaurantRepository.getRestaurants();
+	// 	// return list.stream().map((response) -> RestaurantResponse.from(response)).toList();
+	// 	return list.stream().map(RestaurantResponse::from).toList();
+	// }
 	@Override
-	public List<RestaurantResponse> getRestaurants() {
+	public List<RestaurantListResponse> getRestaurants() {
 		List<Restaurant> list = restaurantRepository.getRestaurants();
-		// return list.stream().map((response) -> RestaurantResponse.from(response)).toList();
-		return list.stream().map(RestaurantResponse::from).toList();
+		return list.stream().map(RestaurantListResponse::from).toList();
 	}
 
 	@Override
@@ -56,4 +61,5 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 		return restaurant;
 	}
+
 }

@@ -1,6 +1,7 @@
 package com.jyujyu.review.repository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
@@ -15,9 +16,14 @@ import lombok.RequiredArgsConstructor;
 public class RestaurantRepositoryImpl implements RestaurantRepository {
 	private final RestaurantJpaRepository restaurantJpaRepository;
 
+	// @Override
+	// public List<Restaurant> getRestaurants() {
+	// 	return restaurantJpaRepository.findAll().stream().map(RestaurantEntity::toModel).toList();
+	// }
+
 	@Override
 	public List<Restaurant> getRestaurants() {
-		return restaurantJpaRepository.findAll().stream().map(RestaurantEntity::toModel).toList();
+		return restaurantJpaRepository.findAll().stream().map(RestaurantEntity::toModel).collect(Collectors.toList());
 	}
 
 	@Override
