@@ -5,7 +5,9 @@ import java.util.List;
 import com.jyujyu.review.domain.Restaurant;
 
 public interface RestaurantRepository {
-	List<Restaurant> getRestaurants();
+	// List<Restaurant> getRestaurants();
 
 	Restaurant save(Restaurant restaurant);
+
+	List<Restaurant> getRestaurants();
 }

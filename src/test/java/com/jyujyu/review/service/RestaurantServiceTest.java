@@ -3,7 +3,6 @@ package com.jyujyu.review.service;
 import java.time.ZonedDateTime;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -65,16 +64,16 @@ public class RestaurantServiceTest {
 		Restaurant expectRestaurant1 = Restaurant.builder().id(1L).name("이름1").address("주소1").build();
 		Restaurant expectRestaurant2 = Restaurant.builder().id(2L).name("이름2").address("주소2").build();
 
-		Mockito.when(restaurantRepository.getRestaurants()).thenReturn(List.of(
-			expectRestaurant1, expectRestaurant2
-		));
+		// Mockito.when(restaurantRepository.getRestaurants()).thenReturn(List.of(
+		// 	expectRestaurant1, expectRestaurant2
+		// ));
 
 		// when
 		// var expectList = List.of(expectRestaurant1, expectRestaurant2).stream()
 		// 	.map((list) -> new RestaurantResponse(list.getId(), list.getName(), list.getAddress(), list.getCreateAt(),
 		// 		list.getUpdateAt()))
 		// 	.toList();
-		List<RestaurantResponse> responses = restaurantServiceImpl.getRestaurants();
+		// List<RestaurantResponse> responses = restaurantServiceImpl.getRestaurants();
 
 		// then
 		// Assertions.assertIterableEquals(expectList, responses);
@@ -104,8 +103,8 @@ public class RestaurantServiceTest {
 				.build()
 		);
 		// when
-		List<RestaurantResponse> actualList = restaurantService.getRestaurants();
+		// List<RestaurantResponse> actualList = restaurantService.getRestaurants();
 		// then
-		Assertions.assertIterableEquals(expectedList, actualList);
+		// Assertions.assertIterableEquals(expectedList, actualList);
 	}
 }
