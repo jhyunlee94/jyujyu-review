@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jyujyu.review.controller.port.RestaurantService;
 import com.jyujyu.review.controller.response.RestaurantListResponse;
@@ -31,12 +32,14 @@ public class RestaurantServiceImpl implements RestaurantService {
 	// 	// return list.stream().map((response) -> RestaurantResponse.from(response)).toList();
 	// 	return list.stream().map(RestaurantResponse::from).toList();
 	// }
+	@Transactional
 	@Override
 	public List<RestaurantListResponse> getRestaurants() {
 		List<Restaurant> list = restaurantRepository.getRestaurants();
 		return list.stream().map(RestaurantListResponse::from).toList();
 	}
 
+	@Transactional
 	@Override
 	public Restaurant create(RestaurantCreate request) {
 		List<Menu> menus = new ArrayList<>();
