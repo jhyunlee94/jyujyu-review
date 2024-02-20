@@ -34,6 +34,7 @@ public class Restaurant {
 			", address='" + address + '\'' +
 			", createAt=" + createAt +
 			", updateAt=" + updateAt +
+			", menus=" + menus +
 			'}';
 	}
 }

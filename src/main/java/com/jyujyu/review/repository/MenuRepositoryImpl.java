@@ -17,4 +17,5 @@ public class MenuRepositoryImpl implements MenuRepository {
 	public Menu save(Menu menu) {
 		return menuJpaRepository.save(RestaurantMenuEntity.fromModel(menu)).toModel();
 	}
+
 }

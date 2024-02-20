@@ -1,6 +1,7 @@
 package com.jyujyu.review.repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
@@ -24,6 +25,11 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
 	@Override
 	public List<Restaurant> getRestaurants() {
 		return restaurantJpaRepository.findAll().stream().map(RestaurantEntity::toModel).collect(Collectors.toList());
+	}
+
+	@Override
+	public Optional<Restaurant> findById(Long id) {
+		return restaurantJpaRepository.findById(id).map(RestaurantEntity::toModel);
 	}
 
 	@Override

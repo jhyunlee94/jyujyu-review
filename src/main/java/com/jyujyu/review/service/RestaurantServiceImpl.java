@@ -39,6 +39,17 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return list.stream().map(RestaurantListResponse::from).toList();
 	}
 
+	@Override
+	public Restaurant getRestaurant(Long restaurantId) {
+		Restaurant restaurant = restaurantRepository.findById(restaurantId).orElseThrow();
+		System.out.println(restaurant.toString());
+		// List<Menu> menus = menuRepository.findAllByMenuId(restaurantId);
+		// for (Menu menu : menus) {
+		// 	System.out.println(menu);
+		// }
+		return restaurant;
+	}
+
 	@Transactional
 	@Override
 	public Restaurant create(RestaurantCreate request) {
