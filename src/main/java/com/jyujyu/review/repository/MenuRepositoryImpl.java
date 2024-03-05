@@ -1,5 +1,7 @@
 package com.jyujyu.review.repository;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Repository;
 
 import com.jyujyu.review.domain.Menu;
@@ -17,4 +19,10 @@ public class MenuRepositoryImpl implements MenuRepository {
 	public Menu save(Menu menu) {
 		return menuJpaRepository.save(RestaurantMenuEntity.fromModel(menu)).toModel();
 	}
+
+	@Override
+	public Optional<Menu> findById(Long id) {
+		return menuJpaRepository.findById(id).map(RestaurantMenuEntity::toModel);
+	}
+
 }

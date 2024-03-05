@@ -10,7 +10,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public class RestaurantCreate {
 	private final String name;
-
 	private final String address;
 	private final List<CreateRequestMenu> menus;
 

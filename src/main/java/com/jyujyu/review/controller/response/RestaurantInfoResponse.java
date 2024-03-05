@@ -7,14 +7,12 @@ import com.jyujyu.review.domain.Restaurant;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @Getter
 @Builder
-@AllArgsConstructor // mock 테스트 한다고 추가 함 추후 다른 형태로 바꿀 예정
-@EqualsAndHashCode  // mock 테스트 한다고 추가 함 추후 다른 형태로 바꿀 예정
-public class RestaurantResponse {
+@AllArgsConstructor
+public class RestaurantInfoResponse {
 	private Long id;
 	private String name;
 	private String address;
@@ -22,12 +20,11 @@ public class RestaurantResponse {
 	private ZonedDateTime updatedAt;
 	private List<RestaurantMenuResponse> menus;
 
-	public static RestaurantResponse from(Restaurant restaurant) {
+	public static RestaurantInfoResponse from(Restaurant restaurant) {
 		List<RestaurantMenuResponse> menuResponses = restaurant.getMenus().stream()
 			.map(RestaurantMenuResponse::from)
 			.toList();
-
-		return RestaurantResponse.builder()
+		return RestaurantInfoResponse.builder()
 			.id(restaurant.getId())
 			.name(restaurant.getName())
 			.address(restaurant.getAddress())
@@ -36,5 +33,4 @@ public class RestaurantResponse {
 			.menus(menuResponses)
 			.build();
 	}
-
 }

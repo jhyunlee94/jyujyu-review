@@ -17,8 +17,8 @@ public class RestaurantMenuResponse {
 	private final Long restaurantId;
 	private final String name;
 	private final Integer price;
-	private final ZonedDateTime createAt;
-	private final ZonedDateTime updateAt;
+	private final ZonedDateTime createdAt;
+	private final ZonedDateTime updatedAt;
 
 	public static RestaurantMenuResponse from(Menu menu) {
 		return RestaurantMenuResponse.builder()
@@ -26,8 +26,8 @@ public class RestaurantMenuResponse {
 			.restaurantId(menu.getRestaurantId())
 			.name(menu.getName())
 			.price(menu.getPrice())
-			.createAt(menu.getCreateAt())
-			.updateAt(menu.getUpdateAt())
+			.createdAt(menu.getCreatedAt())
+			.updatedAt(menu.getUpdatedAt())
 			.build();
 	}
 }
